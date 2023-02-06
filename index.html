@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./jquery-ui-1.13.2.custom/jquery-ui.css">
+    <link rel="stylesheet" href="./jquery-ui-1.13.2.custom/jquery-ui.theme.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {}
+
+    header {
+        width: 100%;
+        height: 60px;
+        background-color: black;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        font-family: monospace;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+    }
+
+    .nav ol {
+        display: flex;
+        list-style-type: none;
+        gap: 40px;
+    }
+
+    .nav ol li a {
+        text-decoration: none;
+        color: white;
+        font-size: 1.4em;
+        position: relative;
+    }
+    .nav ol li a::before{
+        content: " ";
+        width: 50px;
+        height: 2px;
+        position: absolute;
+        bottom: -10px;
+        background-color: white;
+        display: none;
+    }
+    .nav ol li a:hover::before{
+        display: block;
+        animation: ani 1s  forwards;
+    }
+    @keyframes ani {
+        from{
+            width: 0px;
+        }
+        to{
+            width: 80px;
+        }
+    }
+    .main {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+        margin-top: 40px;
+    }
+
+    .main p {
+        width: 800px;
+        line-height: 1.6;
+        margin-top: 20px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
+    .main h2 {
+        position: relative;
+        font-size: 1.6em;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
+    .main h2::before {
+        content: " ";
+        width: 80px;
+        height: 3px;
+        background-color: #0000ff;
+        position: absolute;
+        bottom: -10px;
+        border-radius: 20px;
+    }
+
+    .main .img-1 {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .main .img-1::before {
+        content: " ";
+        width: 100%;
+        height: 99%;
+        background-color: rgb(0, 0, 0);
+        opacity: .7;
+        position: absolute;
+        top: 0;
+
+    }
+
+    .play .fa-circle-play {
+        position: absolute;
+        top: 120px;
+        left: 40%;
+        font-size: 3em;
+        color: white;
+    }
+
+    .play .fa-circle-play:hover {
+        transform: scale(1.2);
+        color: #001a99;
+
+
+    }
+
+    .main .img-1 img:hover {
+        transform: scale(1.1);
+
+    }
+
+    .iframe {
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.940);
+        display: grid;
+        justify-content: center;
+        align-content: center;
+
+        position: fixed;
+        top: 0px;
+        display: none;
+    }
+
+    .fa-xmark {
+        padding: 5px 10px;
+        background-color: white;
+        color: black;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        text-align: center;
+        font-size: 2.0em;
+    }
+
+    .fa-xmark:hover {
+        background-color: #0000ff;
+        color: white;
+    }
+
+    .type {
+        width: 100%;
+        height: fit-content;
+        font-family: monospace;
+        margin-top: 40px;
+    }
+
+    .type h1 {
+        text-align: center;
+        position: relative;
+    }
+
+    .type h1::before {
+        content: " ";
+        width: 100px;
+        height: 3px;
+        background-color: #0000ff;
+        position: absolute;
+        bottom: -10px;
+        left: 46%;
+        border-radius: 20px;
+    }
+
+    .type .type-cnt {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-top: 80px;
+    }
+
+    .type .type-cnt h2 {
+        position: relative;
+        background-color: rgba(159, 158, 158, 0.524);
+        color: black;
+        padding: 10px;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+
+    .type .type-cnt h2::before {
+        content: " ";
+        width: 0px;
+        height: 3px;
+        background-color: #0000ff;
+        position: absolute;
+        bottom: -10px;
+
+    }
+
+    .type .type-cnt h2:hover {
+        background-color: #0000ff;
+        color: white;
+        /* animation: ani 1s  forwards; */
+    }
+
+    @keyframes ani {
+        from {
+            width: 0px;
+        }
+
+        to {
+            width: 60px;
+        }
+    }
+
+    .card_1 img {
+        width: 300px;
+        height: 240px;
+    }
+
+    .saudi-air .card_1 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 30px;
+        padding: 20px;
+        margin-top: 30px;
+
+    }
+
+    .emirates-air .card_1 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 30px;
+        padding: 20px;
+        margin-top: 30px;
+
+    }
+
+    .emirates-air,
+    .air-india,
+    .air-indigo,
+    .qatar-air,
+    .spice-jet,
+    .ethihad-air {
+        display: none;
+    }
+
+    .air-india .card_1 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 30px;
+        padding: 20px;
+        margin-top: 30px;
+
+    }
+
+    .air-indigo .card_1 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 30px;
+        padding: 20px;
+        margin-top: 30px;
+
+    }
+
+    .qatar-air .card_1 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 30px;
+        padding: 20px;
+        margin-top: 30px;
+
+    }
+
+    .spice-jet .card_1 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 30px;
+        padding: 20px;
+        margin-top: 30px;
+
+    }
+
+    .ethihad-air .card_1 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 30px;
+        padding: 20px;
+        margin-top: 30px;
+       
+    }
+
+    .saudi-air .card_1 img {
+        width: 300px;
+        height: 240px;
+        position: relative;
+        z-index: +1;
+        overflow: hidden;
+    }
+
+    .saudi-air .card_1 img ::before {
+        content: " ";
+        width: 30%;
+        height: 50%;
+        background-color: black;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+    }
+
+    .counter-section {
+        width: 100%;
+        height: 300px;
+        background-color: black;
+        color: white;
+        display: flex;
+        font-size: 1.5rem;
+        justify-content: center;
+        gap: 200px;
+        font-family: monospace;
+        align-items: center;
+    }
+
+    #service {
+        text-align: center;
+        font-family: monospace;
+        font-size: 2em;
+        position: relative;
+        margin-top: 50px;
+        margin-bottom: 30px;
+    }
+
+    #service::before {
+        content: " ";
+        width: 120px;
+        height: 3px;
+        background-color: #0000ff;
+        position: absolute;
+        bottom: -10px;
+        text-align: center;
+        left: 45%;
+        border-radius: 20px;
+    }
+    footer{
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content:space-around;
+        color: white;
+        background-color: black;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        font-family: monospace;
+        font-size: 1.2em;
+        
+    }
+    footer .f-1 ol {
+    
+        list-style-type: none;
+    }
+    footer .f-1 ol li{
+        margin-top: 20px;
+        color: gray;
+    }
+    footer h4{
+        position: relative;
+    }
+    footer h4::before{
+        content: " ";
+        width: 80px;
+        height: 1px;
+        background-color: white;
+        position: absolute;
+        bottom: -10px;
+    }
+    .h-logo{
+        display: flex;
+        gap: 40px;
+        align-items: center;
+        font-family: monospace;
+    }
+    .h-logo button{
+        border: none;
+        padding: 10px;
+        border-radius: 10px;
+        background-color:white;
+    }
+    .h-logo button:hover{
+        background-color: bisque;
+        color: black;
+    }
+</style>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://media.istockphoto.com/id/1137971264/vector/airplane-fly-out-logo-plane-taking-off-stylized-sign.jpg?s=612x612&w=0&k=20&c=TH1vDs4wmGnfWapq_e1XYxqzQV_qxaF4_aJWoDJyKNI=" width="50px" style="border-radius: 50px;">
+        </div>
+        <div class="nav">
+            <ol>
+                <li><a href="">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#counter">Services</a></li>
+                <li><a href="#airlines">Airlines</a></li>
+            </ol>
+        </div>
+        <div class="h-logo">
+            <i class="fa-solid fa-magnifying-glass"></i>
+           
+            <i class="fa-solid fa-user"></i>
+            <button>For Enquiry</button>
+        </div>
+    </header>
+    <div class="banner">
+        <!-- <img src="https://images.livemint.com/img/2021/09/10/1600x900/b5afe0de-a2b4-11eb-9703-d2c358e85cf6_1626174820288_1631257232824.jpg" width="100%" height=""> -->
+        <video loop autoplay muted  width="100%">
+            <source
+                src=".//this-is-qatar-airways-aviation-music-video-whatsapp-status-svfromnetcom-dnj0ubfn_k9V6v2YL.mp4">
+        </video>
+    </div>
+    <div class="main">
+        <div class="img-1">
+            <img src="https://images.cnbctv18.com/wp-content/uploads/2022/02/IndiGo.jpg" width="400px">
+            <div class="play">
+                <i class="fa-sharp fa-solid fa-circle-play"></i>
+            </div>
+        </div>
+        <div class="cnt" id="about">
+            <h2>About Indigo!</h2>
+            <p>InterGlobe Aviation Ltd., doing business as IndiGo, is an Indian low-cost airline headquartered in
+                Gurgaon, Haryana, India. It is the largest airline in India by passengers carried and fleet size, with a
+                ~57% domestic market share as of October 2022.[non-primary source needed] It is also the largest
+                individual Asian low-cost carrier in terms of jet fleet size and passengers carried, and the fourth
+                largest carrier in Asia. The airline has carried over 300+ million passengers as of November 2022.[7]
+
+                The airline operates 1,600 daily flights, as of November 2022 to 101 destinations –75 domestic and 26
+                international. It has its primary hub at Indira Gandhi International Airport, Delhi.
+
+                The airline was founded as a private company by Rahul Bhatia of InterGlobe Enterprises and Rakesh
+                Gangwal in 2006. It took delivery of its first aircraft in July 2006 and commenced operations a month
+                later. The airline became the largest Indian carrier by passenger market share in 2012. The company went
+                public in November 2015. Pieter Elbers is currently the CEO of IndiGo.</p>
+        </div>
+
+    </div>
+    <div class="iframe">
+        <iframe width="600px" height="415" src="https://www.youtube.com/embed/5sNy9EYaoxk" title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        <i class="fa-solid fa-xmark" id="cancel"></i>
+    </div>
+    <h2 id="service">OUR SERVICES</h2>
+    <div class="counter-section" id="counter">
+
+        <div class="c1">
+            <h2>
+                <span class="counter" data-speed="1000" id="count1">200</span>+
+            </h2>
+            <p>flights</p>
+        </div>
+        <div class="c2">
+            <h2>
+                <span class="counter" data-speed="1000" id="count2">400</span>+
+            </h2>
+            <p>Passenegrs</p>
+        </div>
+        <div class="c3">
+            <h2>
+                <span class="counter" data-speed="1000" id="count2">600</span>+
+            </h2>
+            <p>Visit Places</p>
+        </div>
+
+    </div>
+    <div class="type" id="airlines">
+        <h1>Types of AirLines</h1>
+        <div class="type-cnt">
+            <div>
+                <h2 id="saudi">Saudia</h2>
+            </div>
+            <div>
+                <h2 id="uae">Emirates</h2>
+            </div>
+            <div>
+                <h2 id="air">Air India</h2>
+            </div>
+            <div>
+                <h2 id="indi">Indigo</h2>
+            </div>
+            <div>
+                <h2 id="qatar">Qatar Airways</h2>
+            </div>
+            <div>
+                <h2 id="jet">Spice Jet</h2>
+            </div>
+            <div>
+                <h2 id="ethihad">Ethihad Airways</h2>
+            </div>
+        </div>
+        <div class="saudi-air">
+            <div class="card_1">
+                <img src="https://mediaassets.airbus.com/permalinks/521290/wpr/a320neo-saudi-arabian-airlines.jpg"
+                    width="300px">
+                <img src="https://image.cnbcfm.com/api/v1/image/106984612-1638632965281-gettyimages-1353994630-08904455.jpeg?v=1638633054"
+                    width="300px">
+                <img src="https://vid.alarabiya.net/images/2019/01/26/bef10fbb-4eef-4376-affc-ad891ec48ccb/bef10fbb-4eef-4376-affc-ad891ec48ccb.jpg?crop=4:3&width=1200"
+                    width="300px">
+                <img src="https://saudigazette.com.sa/uploads/images/2020/04/28/1553900.jpg" width="300px">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Saudi_Arabian_Airlines_Boeing_747-412.jpg"
+                    width="300px">
+                <img src="https://www.klia2.info/wp-content/uploads/saudi-arabian-airlines-01.webp" width="300px">
+                <img src="https://i0.wp.com/www.middleeastmonitor.com/wp-content/uploads/2022/08/GettyImages-1236581012-1.jpg?resize=1199%2C800&quality=85&strip=all&zoom=1&ssl=1"
+                    width="300px">
+                <img src="https://www.aerotime.aero/images/saudia_boeing_dreamliner-scaled.jpg" width="300px">
+            </div>
+        </div>
+        <div class="emirates-air">
+            <div class="card_1">
+                <img src="https://content.presspage.com/uploads/2431/1920_photo1.png?10000">
+                <img src="https://samchui.com/wp-content/uploads/2020/04/LAXD4370-759x500.jpg">
+                <img src="https://pbs.twimg.com/media/FU5CtcDXsAINc9E.jpg">
+                <img
+                    src="https://imageio.forbes.com/specials-images/imageserve/5e77786810380d0006fbbd51/Emirates-Airbus-A380-Landing-In-Amsterdam--Emirates-suspends-all-flights/960x0.jpg?height=474&width=711&fit=bounds">
+                <img
+                    src="https://dynaimage.cdn.cnn.com/cnn/c_fill,g_auto,w_1200,h_675,ar_16:9/https%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F160601105952-emirates-airbus-a380.jpg">
+                <img src="https://cdn.vanguardngr.com/wp-content/uploads/2022/04/Emirates-Airlines.jpeg">
+                <img
+                    src="https://www.aviationbusinessme.com/cloud/2022/01/20/Emirates-Expo-Green-Airbus-A380-800-A6-EON-Full.jpeg">
+                <img src="https://content.presspage.com/uploads/2431/1920_DSC_2033-square-305393.jpg?10000">
+            </div>
+        </div>
+        <div class="air-india">
+            <div class="card_1">
+                <img src="https://cdn.zeebiz.com/sites/default/files/2023/01/07/220152-air-india-1-reu.jpg">
+                <img src="https://content.airindia.in/uploads/career_AI_f1eff503f5.png">
+                <img
+                    src="https://bl-i.thgim.com/public/incoming/nfkfkg/article65872035.ece/alternates/FREE_1200/IMG_2021-10-13T075415Z_1_2_1_1SA8DEIT.jpg">
+                <img src="https://imgd.aeplcdn.com/1920x1080//n/cw/ec/130867/infographics1.jpeg?isig=1&wm=5&q=75">
+                <img src="https://www.shutterstock.com/image-photo/air-india-boeing-747-vteso-260nw-1823819201.jpg">
+                <img
+                    src="https://cdn.businesstraveller.com/wp-content/uploads/fly-images/919636/Air-India-Express-916x516.jpg">
+                <img src="https://www.livelaw.in/h-upload/2020/05/25/375309-air-india.jpg">
+                <img src="https://www.itln.in/h-upload/2022/03/19/23759-air-india-express-fleet.webp">
+            </div>
+        </div>
+        <div class="air-indigo">
+            <div class="card_1">
+                <img
+                    src="https://images.livemint.com/img/2022/05/26/1600x900/b5117f96-7169-11ec-8f17-311f48466dc2_1644217958646_1653545781352.jpg">
+                <img src="https://cdn.zeebiz.com/sites/default/files/2022/10/20/206580-indigo.jpg">
+                <img
+                    src="https://akm-img-a-in.tosshub.com/businesstoday/images/story/202203/indigoflight1200-sixteen_nine.jpg?size=948:533">
+                <img src="https://www.flickonclick.com/wp-content/uploads/2022/03/Indigo-Flights-696x392.webp">
+                <img
+                    src="https://resize.indiatvnews.com/en/resize/newbucket/1200_-/2019/12/722825-indigo-1575280634.jpg">
+                <img
+                    src="https://www.businessinsider.in/photo/77219527/indigo-airlines-first-quarter-preview-and-share-price-chart.jpg?imgsize=2589835">
+                <img
+                    src="https://c.ndtvimg.com/2019-04/ec4fnt5o_indigo-a320neo-ndtv_625x300_17_April_19.jpg?im=Resize=(1230,900)">
+                <img
+                    src="https://images.hindustantimes.com/img/2022/07/04/1600x900/indigo_flight_delays_dgca_seek_explanation_news_1656893564388_1656893564541.JPG">
+
+            </div>
+        </div>
+        <div class="qatar-air">
+            <div class="card_1">
+                <img src="https://gulfbusiness.com/wp-content/uploads/2022/11/52529651598_a1bd11ef06_c.jpg">
+                <img src="https://pbs.twimg.com/media/E-Lk4JGWQAAx4L1.jpg">
+                <img
+                    src="https://images.ctfassets.net/rxqefefl3t5b/2XjDuQIVRZVwr5lisuCKcX/70f5a245c76df3b3cbf58903e533778c/4CR_0322_CarlyRavenhall_2.jpg?fl=progressive&q=80">
+                <img src="https://www.oracle.com/oce/press/assets/CONT1C30B26524D44B26867A79ADAF3A0421/native/">
+                <img
+                    src="https://www.portseattle.org/sites/default/files/2020-12/Qatar_Airways_plane_in_flight_16x9.jpg">
+                <img
+                    src="https://images.ctfassets.net/m9ph4qvas97u/4wm1Nqi3XyMofsvZ4MInKN/9bce1713b55e87b7d55166f91d172a5c/oneworld-alliance-qatar-airways-hero.jpg?fm=webp&q=80">
+                <img
+                    src="https://images.ctfassets.net/m9ph4qvas97u/2XZ8xl28olFK9uG0lNDEui/f592732302a63f1576d23e845799f714/oneworld-alliance-Qatar_Airways_Boeing_777-300.jpg?fm=webp&q=80">
+                <img src="https://cdn.telanganatoday.com/wp-content/uploads/2021/04/Qatar.jpg">
+
+            </div>
+        </div>
+        <div class="spice-jet">
+            <div class="card_1">
+                <img
+                    src="https://images.livemint.com/img/2021/08/20/1600x900/7d5eeeda-dcae-11eb-83e0-ac1c9e8ce8f1_1628864434851_1629473148973.jpg">
+                <img
+                    src="https://images.moneycontrol.com/static-mcnews/2022/02/SpiceJet-1.jpg?impolicy=website&width=1600&height=900">
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWZUNPi9QWBU6Fz77eCQV6ZNpwJszMmo9O4tDyob4-sJ3RrZ3m6ivXXyxDo-QL5aTmUqQ&usqp=CAU">
+                <img src="https://airlineshq.com/images/airlines-logo-india/spicejet_aircraft.jpg">
+                <img
+                    src="https://m.economictimes.com/thumb/msid-89924284,width-1600,height-1065,resizemode-4,imgsize-170288/spicejet.jpg">
+                <img
+                    src="https://images.news18.com/ibnlive/uploads/2020/10/1603791523_spicejet-ians.jpg?im=FitAndFill,width=1200,height=1200">
+                <img
+                    src="https://aviationscoop.com/wp-content/uploads/2022/08/SpiceJet-Private-Charter-Service-2022-Full-Details.jpg">
+                <img src="https://imgnew.outlookindia.com/uploadimage/library/16_9/16_9_5/IMAGE_1657628987.jpg">
+            </div>
+        </div>
+        <div class="ethihad-air">
+            <div class="card_1">
+
+                <img src="https://travelbizmonitor.com/wp-content/uploads/2022/03/80905-1140x620.jpg">
+                <img src="https://ceabbrasil.com.br/blog/wp-content/uploads/2022/04/Etihad-Airways.jpg">
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6FtYIOPFg9nXpWPEhT3b6hnnljMJSWMmWPA&usqp=CAU">
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSD7Db8lPViSRlpGMLJWDZTzbbGAnnccxN9L9Qi1pWc1JUUb2uBatdDbQaszwptj24vjqM&usqp=CAU">
+                <img
+                    src="https://imageio.forbes.com/specials-images/dam/imageserve/38381596/960x0.jpg?format=jpg&width=960">
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYDh6c9DZxMEDYXP5DwrcsQwQJiDJODO-n_lvEYLE6_rhjIKZkbsMsnK1MHTZ_LyYvh34&usqp=CAU">
+                <img
+                    src="https://www.al-monitor.com/sites/default/files/styles/article_header/public/2021-08/GettyImages-1232960103.jpg?h=a5ae579a&itok=AgmtM16l">
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgDvCsai06j9gLuQ0GQwa8CPTCMGG_0kp8LwrPlkQx9-KYnkHYkunNuTok2ixwIkrbf5Y&usqp=CAU">
+            </div>
+        </div>
+    </div>
+    <div id="accordion">
+        <h3>Saudi Airlines</h3>
+        <div>
+            <p>
+                Saudi Arabian Airlines (Saudia) is the national airline of the Kingdom of Saudi Arabia and the largest
+                airline in the Middle East. It flies 12 billion passengers per year. The airline carries many observers
+                as they make an annual pilgrimage, the hajj, to the holiest of destinations in the Muslim world. Saudia
+                Arabian religious practice prevents the carrier from serving alcoholic beverages to passengers and also
+                informs certain personnel policies.The origin of Saudi Arabian Airlines goes back to April 1945, when
+                U.S. President Franklin D. Roosevelt presented a single Douglas DC-3 to King Abdul Aziz ibn Saud. This
+                aircraft was quickly put into service to transport passengers and mail between the country's three main
+                cities: Jeddah, Riyadh, and Dhahran. By the end of 1945 an additional four DC-3 aircraft had been
+                purchased by the Saudi Arabian government. Under the aegis of the Saudi Ministry of Defense and
+                utilizing the existing government equipment and personnel, Saudi Arabian Airlines was formed in
+                September 1946. In October of the same year the first international flight took off for Jerusalem,
+                returning via Beirut carrying pilgrims bound for Mecca. By the end of the year the first overseas office
+                was taking bookings in Cairo. </p>
+        </div>
+        <h3>Emirates Airlines</h3>
+        <div>
+            <p>
+                Emirates (Arabic: طَيَران الإمارات DMG: Ṭayarān Al-Imārāt) is one of two flag carriers of the United
+                Arab Emirates (the other being Etihad). Based in Garhoud, Dubai, the airline is a subsidiary of The
+                Emirates Group, which is owned by the government of Dubai's Investment Corporation of Dubai.[4] As of
+                2019, it was also the largest airline in the Middle East,[5] operating over 3,600 flights per week from
+                its hub at Terminal 3 of Dubai International Airport. It operates to more than 150 cities in 80
+                countries across all continents (except Antarctica) through its fleet of nearly 300 aircraft.[6] Cargo
+                activities are undertaken by Emirates SkyCargo.Emirates is the world's fourth-largest airline by
+                scheduled revenue passenger-kilometers flown,[8] and the second-largest in terms of freight
+                tonne-kilometers flown.During the mid-1980s, Gulf Air began to cut back its services to Dubai. As a
+                result, Emirates was conceived on 15 March 1985, with backing from Dubai's royal family, with Pakistan
+                International Airlines giving two of the airline's first aircraft. With $10 million in start-up capital,
+                it was required to operate independently of government subsidy.[9] Pakistan International Airlines
+                provided free training facilities to Emirates' cabin crew at Karachi airport.[10] The airline was headed
+                by Ahmed bin Saeed Al Maktoum, the airline's present chairman. In the years following its founding, the
+                airline expanded both its fleet and its destinations. In October 2008, Emirates moved all operations at
+                Dubai International Airport to Terminal
+            </p>
+        </div>
+        <h3>Air India Airlines</h3>
+        <div>
+            <p>
+                Air India’s journey took off in 1932, when Bharat Ratna J.R.D Tata formed an Airline, realising his
+                dream. The first Indian to receive a commercial pilot’s license, it was his passion for flying that had
+                sparked Air India’s origins - with the launch of an Airmail service from the then Bombay to Karachi via
+                Ahmedabad. Nationalized in 1953, Air India has been spreading its wings over the years to become a
+                leading domestic and global brand.Air India’s international connectivity, spanning cities in Europe,
+                USA, UK, Africa, the Gulf, Asia and Australia, was strengthened after joining Star Alliance – the
+                largest global air consortium – in July, 2014. The airline also covers every remote corner of our
+                country. It has always stood by the Nation and its people during the hour of need and has played a key
+                role in evacuation missions during crises like the Gulf War, the Covid pandemic and the recent Ukraine
+                conflict.On 27th January, 2022, Air India has been welcomed back to the Tata Group and is poised to soar
+                high - redefining its goals & approach with focus on overall excellence & customer-centric processes.
+                "The Tata group welcomes Air India's new customers and is excited to work together to make Air India the
+                airline of choice in terms of passenger comfort and service.", remarked Mr. Ratan Tata, Chairman
+                Emeritus, Tata Sons on the occasion. </p>
+
+        </div>
+        <h3>Indigo Airlines</h3>
+        <div>
+            <p>
+                IndiGo is India’s largest passenger airline with a market share of 54.9% as of December, 2022. We
+                primarily operate in India’s domestic air travel market as a low-cost carrier with focus on our three
+                pillars – offering low fares, being on-time and delivering a courteous and hassle-free experience.Since
+                our inception in August 2006, we have grown from a carrier with one plane to a fleet of 300 aircraft
+                today. A uniform fleet for each type of operation, high operational reliability and an award winning
+                service make us one of the most reliable airlines in the world.IndiGo has a total destination count of
+                101 with 75 domestic destinations and 26 international.IndiGo is not only the most efficient low fare
+                operator domestically but is also comparable with global low cost airlines. We are constantly enhancing
+                our engagement with our passengers to augment their travel experience. From multichannel direct sales
+                (including online flight booking, call centers and airport counters), to online flight status checking,
+                an exclusive IndiGo app for Android, we have transformed air travel in India. Today, we are India’s most
+                preferred airline. At IndiGo, low fares come with high quality.
+            </p>
+            <p>
+                Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
+                Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+                inceptos himenaeos.
+            </p>
+        </div>
+        <h3>Qatar Airways</h3>
+        <div>
+            <p>
+                Qatar Airways, the national carrier of the State of Qatar, is an award-winning airline that has received
+                global recognition for its unparalleled services. In 2013, the airline joined the oneworld® alliance,
+                becoming a strategic partner, and expanding the alliance’s portfolio of Middle Eastern carriers.Becoming
+                synonymous with excellence, Qatar Airways was recently announced as the ‘Airline of the Year’ at the
+                2022 World Airline Awards, managed by the international air transport rating organisation, Skytrax. The
+                airline continues to stand alone at the top of the industry having won the main prize for an
+                unprecedented seventh time (2011, 2012, 2015, 2017, 2019, 2021 and 2022), while also being named
+                ‘World’s Best Business Class’, ‘World’s Best Business Class Lounge Dining’ and ‘Best Airline in the
+                Middle East’.We are proud to have one of the largest global networks as we currently fly to more than
+                150 destinations, connecting the world via our hub Hamad International Airport, voted by Skytrax for a
+                consecutive second time as the ‘World’s Best Airport’ 2022.As Qatar Airways continues to expand its
+                services, our mission remains the same, to provide our passengers with the best offerings in the
+                industry.
+            </p>
+        </div>
+        <h3>SpiceJet Airways</h3>
+        <div>
+            <p>
+                SpiceJet is an Indian budget airline headquartered in Gurgaon, Haryana. It is the second largest airline
+                in India by number of domestic passengers carried, with a market share of 13.6% as of March 2019.[5] The
+                airline operates 630 daily flights to 64 destinations, including 54 Indian and 15 international
+                destinations from its bases at Delhi and Hyderabad. Established as air taxi provider ModiLuft in 1994,
+                the company was acquired by Indian entrepreneur Ajay Singh in 2004 and renamed to SpiceJet. The airline
+                operated its first flight in May 2005. Indian media baron Kalanidhi Maran acquired a controlling stake
+                in SpiceJet in June 2010 through Sun Group which was sold back to Ajay Singh in January 2015. The
+                airline operates a fleet of Boeing 737 and Bombardier Dash 8 aircraft. The origins of SpiceJet can be
+                tracked back to March 1984 when the company was established by Indian industrialist S. K. Modi to
+                provide private air taxi services.[6] On 17 February 1993, the company was named as MG Express and
+                entered into technical partnership with the German flag carrier Lufthansa. The airline provided
+                passenger and cargo services under the name of Modiluft before ceasing operations in 1996.[In 2004, the
+                company was acquired by Ajay Singh and the airline planned to restart operations as SpiceJet following
+                the low-cost model.[6] SpiceJet leased two Boeing 737-800 aircraft in 2005 and planned to order 10 new
+                aircraft for expansion.[7] SpiceJet opened bookings on 18 May 2005 and the first flight was operated
+                between Delhi and Mumbai on 24 May 2005.[8] By July 2008, it was India's third-largest low-cost carrier
+                in terms of market share after Air Deccan and IndiGo.[9] Indian media baron Kalanidhi Maran acquired
+                37.7% stake in SpiceJet in June 2010 through Sun Group.[10][11] The airline ordered 30 Boeing 737-8
+                aircraft worth US$2.7 billion July 2010 and a further 15 Bombardier Q4 Dash short-haul aircraft worth
+                US$446 million in December 2010.
+            </p>
+        </div>
+        <h3>Ethihad Airways</h3>
+        <div>
+            <p>Etihad Airways (Arabic: شَرِكَة ٱلْاِتِّحَاد لِلطَّيْرَان, romanized: sharikat al-ittiḥād li-ṭ-ṭayarān)
+                is one of two flag carriers of the United Arab Emirates (the other being Emirates). Its head office is
+                in Khalifa City, Abu Dhabi, near Abu Dhabi International Airport. Etihad commenced operations in
+                November 2003.[2] It is the second-largest airline in the UAE after Emirates. The name Etihad is Arabic
+                for 'Union'. The airline operates more than 1,000 flights per week to over 120 passenger and cargo
+                destinations in the Middle East, Africa, Europe, Asia, Australia, and North America, with a fleet of
+                102[3] Airbus and Boeing aircraft as of February 2020. In 2015, Etihad carried 14.8 million passengers,
+                a 22.3% increase from the previous year,[4] delivering revenues of US$9.02 billion and net profits of
+                US$103 million.[5] Its main base is Abu Dhabi International Airport.[In addition to its core activity of
+                passenger transportation, Etihad also operates Etihad Holidays and Etihad Cargo.[2] Etihad established
+                its airline alliance, Etihad Airways Partners, in October 2015[7] which was disbanded in 2018 after
+                several of its members fell into financial difficulties.[8] Etihad Airways holds minority equity
+                investments in the participating airlines, as well as having had a stake in Virgin Australia, until its
+                insolvency in April 2020 with no return on investment.[9] Booking for these airlines was consolidated
+                under one network. </p>
+        </div>
+    </div>
+    <footer>
+        <div class="f-logo">
+           <img src="https://media.istockphoto.com/id/1137971264/vector/airplane-fly-out-logo-plane-taking-off-stylized-sign.jpg?s=612x612&w=0&k=20&c=TH1vDs4wmGnfWapq_e1XYxqzQV_qxaF4_aJWoDJyKNI=" width="180px" style="border-radius: 20px;">
+        </div>
+        <div class="f-1">
+            <h4>Quick Links</h4>
+            <ol>
+                <li>Home</li>
+                <li>About</li>
+                <li>Gallery</li>
+                <li>Airlines</li>
+            </ol>
+        </div>
+        <div class="f-1">
+            <h4>Social Links</h4>
+            <ol>
+                <li>Github</li>
+                <li>Instagram</li>
+                <li>LinkedIn</li>
+                <li>Twitter</li>
+            </ol>
+        </div>
+        <div class="f-1">
+            <h4>Contact Links</h4>
+            <ol>
+                <li>+121 246912</li>
+                <li>+044-123456</li>
+                <li>jollytrip@gmail.com</li>
+                <li>Canada</li>
+            </ol>
+        </div>
+    </footer>
+    <script>
+        let playbtn = document.getElementsByClassName("play")[0];
+        let iframe = document.getElementsByClassName("iframe")[0];
+        let cancel = document.getElementById("cancel");
+        playbtn.addEventListener("click", () => {
+            iframe.style.display = "grid";
+
+        })
+        cancel.addEventListener("click", () => {
+            iframe.style.display = "none";
+
+        })
+        let saudi = document.querySelector("#saudi");
+        let uae = document.querySelector("#uae");
+        let airindia = document.querySelector("#air");
+        let indigo = document.querySelector("#indi");
+        let qatar = document.querySelector("#qatar");
+        let jet = document.querySelector("#jet");
+        let ethihad = document.querySelector("#ethihad");
+        let saudiair = document.querySelector(".saudi-air");
+        let emiratesair = document.querySelector(".emirates-air");
+        let airind = document.querySelector(".air-india");
+        let airindigo = document.querySelector(".air-indigo");
+        let qatarair = document.querySelector(".qatar-air");
+        let spicejet = document.querySelector(".spice-jet");
+        let ethihadair = document.querySelector(".ethihad-air")
+
+        saudi.addEventListener("click", () => {
+            saudiair.style.display = "block";
+            emiratesair.style.display = "none";
+            airind.style.display = "none";
+            airindigo.style.display = "none";
+            qatarair.style.display = "none";
+            spicejet.style.display = "none";
+            ethihadair.style.display = "none";
+
+            console.log("yu7o");
+        })
+        uae.addEventListener("click", () => {
+            saudiair.style.display = "none";
+            emiratesair.style.display = "block";
+            airind.style.display = "none";
+            airindigo.style.display = "none";
+            qatarair.style.display = "none";
+            spicejet.style.display = "none";
+            ethihadair.style.display = "none";
+
+            console.log("yu7o");
+        })
+        airindia.addEventListener("click", () => {
+            saudiair.style.display = "none";
+            emiratesair.style.display = "none";
+            airind.style.display = "block";
+            airindigo.style.display = "none";
+            qatarair.style.display = "none";
+            spicejet.style.display = "none";
+            ethihadair.style.display = "none";
+
+            console.log("yu7o");
+        })
+        indigo.addEventListener("click", () => {
+            saudiair.style.display = "none";
+            emiratesair.style.display = "none";
+            airind.style.display = "none";
+            airindigo.style.display = "block";
+            qatarair.style.display = "none";
+            spicejet.style.display = "none";
+            ethihadair.style.display = "none";
+
+            console.log("yu7o");
+        })
+        qatar.addEventListener("click", () => {
+            saudiair.style.display = "none";
+            emiratesair.style.display = "none";
+            airind.style.display = "none";
+            airindigo.style.display = "none";
+            qatarair.style.display = "block";
+            spicejet.style.display = "none";
+            ethihadair.style.display = "none";
+
+            console.log("yu7o");
+        })
+        jet.addEventListener("click", () => {
+            saudiair.style.display = "none";
+            emiratesair.style.display = "none";
+            airind.style.display = "none";
+            airindigo.style.display = "none";
+            qatarair.style.display = "none";
+            spicejet.style.display = "block";
+            ethihadair.style.display = "none";
+
+            console.log("yu7o");
+        })
+        ethihad.addEventListener("click", () => {
+            saudiair.style.display = "none";
+            emiratesair.style.display = "none";
+            airind.style.display = "none";
+            airindigo.style.display = "none";
+            qatarair.style.display = "none";
+            spicejet.style.display = "none";
+            ethihadair.style.display = "block";
+
+            console.log("yu7o");
+        });
+        let counter = document.querySelectorAll(".counter");
+        let a = Array.from(counter);
+        a.map((item) => {
+            let count = item.innerHTML;
+            item.innerHTML = "";
+            let countNumber = 0;
+
+            function counterUP() {
+                item.innerHTML = countNumber++;
+                if (countNumber > count) {
+                    clearInterval(stop);
+                }
+            }
+            let stop = setInterval(() => {
+                counterUP();
+            }, item.dataset.speed / count);
+        });
+        $(function () {
+            $("#accordion").accordion();
+        });
+    </script>
+</body>
+
+</html>
